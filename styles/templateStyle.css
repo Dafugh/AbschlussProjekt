@@ -1,0 +1,41 @@
+
+#User {
+    text-align: center;
+    width: 800px;
+    border-collapse: collapse;
+    margin:50px auto;
+    
+}
+#UserHeading, #user_Userscore {
+    display:inline-flex;
+}
+#User, td, th {
+    border: 1px solid black;
+
+}
+td, th{
+    padding: 15px;
+}
+th{
+    background-color: magenta;
+}
+#Cards {
+    margin:50px auto;
+}
+.cards {
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid red;
+    text-align: center; 
+    line-height: 50px;
+    line-break: auto;
+    background-color: magenta;
+    cursor:pointer;
+}
+.cards:active{
+    background-color: pink;
+}
+#cardSet_1, #cardSet_2, #cardSet_3, #cardSet_4, #cardSet_5, #cardSet_6, #cardSet_7, #cardSet_8, #cardSet_9, #cardSet_10, #cardSet_11, #cardSet_12, #cardSet_13 {
+    display:inline-flex;
+} 

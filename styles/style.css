@@ -1,0 +1,23 @@
+#Header_Title {
+    text-align: center;
+    color: black;
+}
+#Header_MenuPoint {
+    text-align: center;
+}
+#Input_Room  {
+    align-content: center;
+    text-align: center;
+	font-size: 22px;
+    
+}
+#Input_Name  {
+    align-self: auto;
+	font-size: 22px;
+    
+}
+#dropdown_selection {
+    align-self: auto;
+	font-size: 22px;
+    
+}

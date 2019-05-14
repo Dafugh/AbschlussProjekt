@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title id ="roomTitle"></title>
+        <link rel="stylesheet" type="text/css" href="/styles/templateStyle.css">
+    </head>
+    <body>
+        <p><h1>Scrum-Poker</h1></p>
+
+        <div id="roomInfo">
+           <h2></h2> 
+        </div>
+        <div id="UserHeading"><h2 id="heading_teilnehmer"></h2></div>
+        <div id="user_Userscore">
+                <table id="User">
+                        <tr id="tabletop">
+                            <th id="tableInfoHeadN">Name</th>
+                            <th id="tableInfoHeadV">Vote</th>   
+                        </tr> 
+                </table>
+                    
+        </div>
+        <div id="Cards">     
+            <span>
+                <div id="cardSet_1" class="cards">0</div>
+                <div id="cardSet_2" class="cards">0.5</div>
+                <div id="cardSet_3" class="cards">1</div>
+                <div id="cardSet_4" class="cards">2</div>
+                <div id="cardSet_5" class="cards">3</div>
+                <div id="cardSet_6" class="cards">5</div>
+                <div id="cardSet_7" class="cards">8</div>
+                <div id="cardSet_8" class="cards">13</div>
+                <div id="cardSet_9" class="cards">20</div>
+                <div id="cardSet_10" class="cards">40</div>
+                <div id="cardSet_11" class="cards">100</div>
+                <div id="cardSet_12" class="cards">?</div>
+                <div id="cardSet_13" class="cards">(Kaffetasse)</div>
+            </span>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="/js/template.js"></script>
+    </body>
+
+</html>
