@@ -4,16 +4,12 @@ var app = express();
 var http = require('http');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-var cookieParser = require('cookie-parser');
 
 var server = http.createServer(app);
 var io = require('socket.io').listen(server);
 
 app.set('views', './views');
-app.set('view engine', 'pug');
-
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.get('/', (request, response) =>  response.sendFile(`${__dirname}/Index/index.html`));
 app.use('/', express.static(__dirname + '/index'));
 app.use('/styles', express.static(__dirname + '/styles'));
@@ -70,7 +66,6 @@ app.post('/Index/join', (req, res) => {
 app.get('/room/:id/:username', (req, res) => {
     const id = req.params.id;
     res.sendFile(`${__dirname}/template/roomtemplate.html`, function(err, res) {
-
     });
     io.on('connection', function(socket) {
         console.log("ID: " + socket.id);
@@ -83,7 +78,7 @@ app.get('/room/:id/:username', (req, res) => {
            })
        })
         socket.on('card_Choosen', function(data){
-            console.log("2 ID: " + data.vote);
+            console.log("Vote from: " + data.username + "= " + data.vote);
             if(req.params.id == data.roomid) {
                 database.query("INSERT INTO Votes VALUES('"+data.username+"','"+data.vote+"','"+data.roomid+"')ON DUPLICATE KEY UPDATE Vote = '"+data.vote+"'", function(err, res) {
                     if(err) throw err;
@@ -96,6 +91,5 @@ app.get('/room/:id/:username', (req, res) => {
             }
         })
     })
-   
 })
 server.listen(3000);

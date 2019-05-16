@@ -39,3 +39,9 @@ th{
 #cardSet_1, #cardSet_2, #cardSet_3, #cardSet_4, #cardSet_5, #cardSet_6, #cardSet_7, #cardSet_8, #cardSet_9, #cardSet_10, #cardSet_11, #cardSet_12, #cardSet_13 {
     display:inline-flex;
 } 
+#divInfoUsername h1,#divInfoUsername p {
+    display: inline;
+}
+#divInfoRoom h1, #divInfoRoom p{
+    display: inline;
+}

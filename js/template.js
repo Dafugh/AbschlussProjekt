@@ -3,6 +3,17 @@ var url = window.location.href;
 var urlSplit = url.split("/");
 var roomname = urlSplit[4];
 var currentusername = urlSplit[5];
+var title = document.getElementById('roomTitle');
+var infoBoxUsername = document.getElementById('Username');
+var infoBoxRoomName = document.getElementById('Roomname');
+window.onload= loadSite();
+
+
+function loadSite() {
+    title.innerHTML = currentusername;
+    infoBoxRoomName.innerHTML =roomname;
+    infoBoxUsername.innerHTML =currentusername;
+}
 document.getElementById('cardSet_1').addEventListener('click', card1);
 document.getElementById('cardSet_2').addEventListener('click', card2);
 document.getElementById('cardSet_3').addEventListener('click', card3);
@@ -69,7 +80,7 @@ function insertUsers(data) {
         s += "<td>";
         s += data[i].Username;
         s += "</td>";
-        s += "<td>"; 
+        s += "<td>" ; 
         s += data[i].Vote;
         s += "</td>";
         s += "</tr>";
