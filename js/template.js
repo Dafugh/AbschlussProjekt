@@ -16,8 +16,9 @@ document.getElementById('cardSet_10').addEventListener('click', card10);
 document.getElementById('cardSet_11').addEventListener('click', card11);
 document.getElementById('cardSet_12').addEventListener('click', card12);
 document.getElementById('cardSet_13').addEventListener('click', card13);
+
 function card1() {
- socket.emit('card_Choosen',{vote: "0", });
+    socket.emit('card_Choosen',{vote: "0", username: currentusername, roomid: roomname });
 }
 function card2() {
     socket.emit('card_Choosen',{vote: "0.5", username: currentusername, roomid: roomname});
