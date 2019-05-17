@@ -9,9 +9,17 @@
             <div id=Header_MenuPoint><h2>Raum beitreten</h2></div>
             <div id=Input_Room>
                 <form action="/Index/join" method="POST">
+                    Roomname: <input type="text" id="Input_RoomNameID" name="Input_Roomname" readonly><br>
                     Username:   <input type="text" id="Input_UserNameJoinID" name="Input_UserNameJoin" required><br>
                     <button type="submit">Send</button>
                 </form>
         </div>
+        <script>
+            window.onload = function() {
+                url = window.location.href;
+                urlSplit = url.split("/");
+                document.getElementById('Input_RoomNameID').value =  urlSplit[4];
+            }
+        </script>
     </body>
 </html>

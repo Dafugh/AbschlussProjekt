@@ -43,6 +43,13 @@ function insertUserName(username,id) {
         console.log("Successfully inserted User " + username + " on roomid " + id);
    })
 }
+function checkVotes(result) {
+    var notAllVoted = false;
+    for(var i = 0; i < result.length; i++) {
+        if(result[i].Vote = "Not Voted") notAllVoted = true;
+    }
+    return notAllVoted
+}
 app.post('/Index/data', (req, res) => {
     const roomId = createId();
     const username = req.body.Input_UserName;
@@ -59,13 +66,14 @@ app.get('/room/:id', (req, res) => {
 });
 app.post('/Index/join', (req, res) => {
     const username = req.body.Input_UserNameJoin;
-    const roomId = req.cookies.ID.id;
+    const roomId = req.body.Input_Roomname;
     if(username != "undefined" && roomId !="undefined") insertUserName(username,roomId);
     res.redirect(`/room/${roomId}/${username}`);
 });
 app.get('/room/:id/:username', (req, res) => {
     const id = req.params.id;
     res.sendFile(`${__dirname}/template/roomtemplate.html`, function(err, res) {
+        console.log("SendFile: " + res)
     });
     io.on('connection', function(socket) {
         console.log("ID: " + socket.id);
@@ -83,7 +91,7 @@ app.get('/room/:id/:username', (req, res) => {
                 database.query("INSERT INTO Votes VALUES('"+data.username+"','"+data.vote+"','"+data.roomid+"')ON DUPLICATE KEY UPDATE Vote = '"+data.vote+"'", function(err, res) {
                     if(err) throw err;
                     console.log("Successfully inserted Vote: " + data.vote + " on roomid " + data.roomid);
-                    database.query("SELECT * FROM `Votes` WHERE room_id = '"+id+"'", function(error, result) {
+                    database.query("SELECT * FROM `Votes` WHERE room_id = '"+data.roomid+"'", function(error, result) {
                         if(error) throw error;
                         io.sockets.emit('Table', result);
                     })

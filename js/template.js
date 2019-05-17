@@ -68,12 +68,39 @@ function card13() {
     socket.emit('card_Choosen',{vote: 'Pause', username: currentusername, roomid: roomname});
 }
 socket.on('Table', function (data) {
-    //console.log("serverroom: " + data[0].room_id+ " roomname: " + roomname);
+    var table = document.getElementById('User')
+    var notVotedExist = false;
     if(data[0].room_id == roomname) {
-        document.getElementById('User').innerHTML = insertUsers(data);
+        for(var i = 0; i < data.length; i++) {
+            if (data[i].Vote =='Not Voted') notVotedExist = true;
+        }
+        if (notVotedExist) table.innerHTML = insertDefaultTable(data)
+        else table.innerHTML = insertUsers(data);
     }
 });
+function insertDefaultTable(data) {
+    console.log("Table Closed");
+    var s = '<tr id="tabletop"><th id="tableInfoHeadN">Name</th><th id="tableInfoHeadV">Vote</th></tr>';
+    for (var i = 0; i < data.length; i++) {
+        s += "<tr>";
+        s += "<td>";
+        s += data[i].Username;
+        s += "</td>";
+        s += "<td>" ; 
+        if(data[i].Username == currentusername) {
+            console.log("Works: " + currentusername);
+            s += data[i].Vote;
+        } else {
+            console.log("hidden");
+            s+= "Vote Hidden";
+        } 
+        s += "</td>";
+        s += "</tr>";
+    }
+    return s;
+}
 function insertUsers(data) {
+    console.log("Table Open ");
     var s = '<tr id="tabletop"><th id="tableInfoHeadN">Name</th><th id="tableInfoHeadV">Vote</th></tr>';
     for (var i = 0; i<data.length; i++) {
         s += "<tr>";

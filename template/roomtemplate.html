@@ -8,8 +8,8 @@
         <p><h1>Scrum-Poker</h1></p>
 
         <div id="roomInfo">
-            <div id="divInfoUsername"><p>Your Username:<h1 id="Username"></h1></p></div>
-            <div id="divInfoRoom"><p>ID  of the Room:<h1 id="Roomname"></h1></p></div>
+            <div id="divInfoUsername"><p>Your Username: <h1 id="Username"></h1></p></div>
+            <div id="divInfoRoom"><p>ID  of the Room: <h1 id="Roomname"></h1></p></div>
            
         </div>
         <div id="UserHeading"><h2 id="heading_teilnehmer"></h2></div>
@@ -20,8 +20,13 @@
                             <th id="tableInfoHeadV">Vote</th>   
                         </tr> 
                 </table>
-                    
+         
         </div>
+        <div>
+                <br><button id="karten_Aufdecken">Karten Aufdecken</button>
+                <button id="vote_Reset">Votes Zurücksetzen</button>
+        </div>
+        
         <div id="Cards">     
             <span>
                 <div id="cardSet_1" class="cards">0</div>
@@ -38,6 +43,7 @@
                 <div id="cardSet_12" class="cards">?</div>
                 <div id="cardSet_13" class="cards">(Kaffetasse)</div>
             </span>
+
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.dev.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
