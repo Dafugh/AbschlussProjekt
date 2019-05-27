@@ -83,8 +83,8 @@ app.get('/room/:id/:username', (req, res) => {
                 if(error) throw error;
                 console.log(result);
                 io.sockets.emit('Table', result);
-           })
-       })
+           });
+       });
         socket.on('card_Choosen', function(data){
             console.log("Vote from: " + data.username + "= " + data.vote);
             if(req.params.id == data.roomid) {
@@ -97,7 +97,26 @@ app.get('/room/:id/:username', (req, res) => {
                     })
                 })
             }
-        })
-    })
-})
+        });
+        socket.on('Uncover', function(data) {
+            if(req.params.id == data.roomid) {
+                database.query("SELECT * FROM `Votes` WHERE room_id = '"+data.roomid+"'", function(error, result) {
+                    if(error) throw error;
+                    io.sockets.emit('Table_Uncover', result);
+                });
+            }
+        });
+        socket.on('Table_Reset', function(data) {
+            if(req.params.id == data.roomid) {
+                database.query("UPDATE Votes SET Vote = DEFAULT WHERE room_id ='"+data.roomid+"'", function(error, result) {
+                    if(error) throw error;
+                    database.query("SELECT * FROM `Votes` WHERE room_id = '"+data.roomid+"'", function(error, result) {
+                        if(error) throw error;
+                        io.sockets.emit('Table', result);
+                    })
+                });
+            }
+        });
+    });
+});
 server.listen(3000);

@@ -68,16 +68,33 @@ function card13() {
     socket.emit('card_Choosen',{vote: 'Pause', username: currentusername, roomid: roomname});
 }
 socket.on('Table', function (data) {
-    var table = document.getElementById('User')
+    var table = document.getElementById('User');
     var notVotedExist = false;
     if(data[0].room_id == roomname) {
         for(var i = 0; i < data.length; i++) {
             if (data[i].Vote =='Not Voted') notVotedExist = true;
         }
-        if (notVotedExist) table.innerHTML = insertDefaultTable(data)
-        else table.innerHTML = insertUsers(data);
+        if (notVotedExist) {
+            table.innerHTML = insertDefaultTable(data);
+        } 
+        else {
+            table.innerHTML = insertDefaultTable(data);
+            document.getElementById('karten_Aufdecken').disabled = false;
+        }
+
     }
 });
+socket.on('Table_Uncover', function(data) {
+    var table = document.getElementById('User');
+    table.innerHTML = insertUsers(data);
+})
+
+function reset() {
+    socket.emit('Table_Reset', {roomid: roomname});
+}
+function uncover() {
+    socket.emit('Uncover',{roomid: roomname});
+}
 function insertDefaultTable(data) {
     console.log("Table Closed");
     var s = '<tr id="tabletop"><th id="tableInfoHeadN">Name</th><th id="tableInfoHeadV">Vote</th></tr>';
